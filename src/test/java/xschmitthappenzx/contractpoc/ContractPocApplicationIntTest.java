@@ -16,10 +16,10 @@ public class ContractPocApplicationIntTest {
     @Test
     public void test_should_return_all_coins(){
 
-        String json = "[\"BTC\", \"ETH\"]";
+        String json = "[\"BTC\",\"ETH\"]";
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> entity = restTemplate.getForEntity("http://localhost:8081/coin", String.class);
+        ResponseEntity<String> entity = restTemplate.getForEntity("http://localhost:8082/coin", String.class);
 
         BDDAssertions.then(entity.getStatusCodeValue()).isEqualTo(201);
         BDDAssertions.then(entity.getBody()).isEqualTo(json);
