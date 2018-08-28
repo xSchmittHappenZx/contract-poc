@@ -1,10 +1,11 @@
 package xschmitthappenzx.contractpoc;
 
-import com.github.tomakehurst.wiremock.client.WireMock;
 import org.assertj.core.api.BDDAssertions;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.contract.stubrunner.junit.StubRunnerRule;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
@@ -12,6 +13,10 @@ import org.springframework.web.client.RestTemplate;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ContractPocApplicationIntTest {
+
+    @Rule
+    public StubRunnerRule stubRunnerRule = new StubRunnerRule()
+            .downloadStub("xschmitthappensx", "contract-poc-coin-service").withPort(9093);
 
     @Test
     public void test_should_return_all_coins(){
